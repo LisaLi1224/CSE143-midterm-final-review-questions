@@ -33,7 +33,27 @@ public class StackandQueue {
            s.push(q.remove());
         }
     }
-    
+   
+    public void splitStack(Stack<Integer> s) { 
+       Queue<Integer> q = new LinkedList<Integer>(); // transfer all elements from stack to queue 
+       int oldLength = s.size();
+       while (!s.isEmpty()) {
+         q.add(s.pop());
+       }
+       // transfer negatives from queue to stack 
+       for (int i = 1; i <= oldLength; i++) {
+         int n = q.remove();
+         if (n < 0) {
+         s.push(n);
+       } else {
+         q.add(n); }
+       }
+       // transfer nonnegatives from queue to stack 
+       while (!q.isEmpty()) {
+         s.push(q.remove()); 
+       }
+    }
+   
     public static void separate(Queue<String> q){
       Stack<String> s = new Stack<>();
       int size = q.size();
